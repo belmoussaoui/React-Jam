@@ -1,0 +1,44 @@
+.title
+{
+	font-weight: 700;
+    font-size: 6.5rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	margin: 0;
+	background: linear-gradient(180deg,#a4deff .01%,#76b9e0 100%);
+	-webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent;
+}
+
+.title .jam {
+	background: linear-gradient(180deg,#d58aff 0%,#b752ef 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.new-game
+{
+	background: #ef087a;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	color: #fff;
+    border: 0;
+    cursor: pointer;
+    font-weight: 700;
+    padding-right: 1.5em;
+    border-radius: 1.5em 1.5em 1.5em 0;
+	font-size: 1rem;
+    font-family: inherit;
+    border: 0;
+    padding: 0 1em;
+    height: 3em;
+}
+
+
+
