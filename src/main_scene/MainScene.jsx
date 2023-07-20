@@ -19,7 +19,6 @@ export default function MainScene() {
 		<OrbitControls />
 		<Light></Light>
 		<Level></Level>
-		<Grid position={[0, 0.01, 0]} args={[8, 14]}  cellThickness={0} />
 	</>
 }
 
