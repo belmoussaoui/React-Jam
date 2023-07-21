@@ -1,0 +1,16 @@
+.rail-container {
+	display: flex;
+	justify-content: center;
+	bottom: calc(0% + 20px);
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 200px;
+	justify-content: space-evenly;
+}
+
+
+.rail-container button {
+	width: 40px;
+	height: 40px;
+}

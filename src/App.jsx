@@ -31,7 +31,6 @@ function App() {
 		<>
 			<Canvas orthographic camera={{position:[0, 7.15, 5.15], zoom:42 }}>
 				<color attach="background" args={["#CDDEFF"]} />
-				<Perf></Perf>
 				{ current_scene(scene) }
 			</Canvas>
 			{ current_ui(scene) }
