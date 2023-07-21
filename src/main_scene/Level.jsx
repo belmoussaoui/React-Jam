@@ -1,5 +1,6 @@
 import { Grid } from "@react-three/drei";
 import useGame from "../stores/useGame";
+import Train from "./Train";
 
 let $gameMap = {
 	width: 8,
@@ -15,6 +16,7 @@ export default function Level() {
 	let y = 6;
 	let d = 3; 
 	return <>
+		<Train x={(4) - $gameMap.width / 2 + 0.5} y={Math.floor(6) - $gameMap.height / 2 + 0.5} ></Train>
 		<Grid position={[0, 0.01, 0]} args={[$gameMap.width, $gameMap.height]}  cellThickness={0} />
 		{ $gameMap.data.map((value, index) => 
 			value == 1 ?
@@ -36,7 +38,6 @@ export default function Level() {
 			if (d == 0) x += 1
 			if (d == 1) y -= 1
 			if (d == 2) x -= 1
-			let oldD = d;
 			if (value == 2) {
 				if (d == 3) d = 2
 				else if (d == 0) d = 3
