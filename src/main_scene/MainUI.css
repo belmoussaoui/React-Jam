@@ -14,3 +14,19 @@
 	width: 40px;
 	height: 40px;
 }
+
+.action-container {
+	display: flex;
+	justify-content: center;
+	top: calc(0% + 20px);
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 200px;
+	justify-content: space-evenly;
+}
+
+.action-container button {
+	width: 40px;
+	height: 40px;
+}

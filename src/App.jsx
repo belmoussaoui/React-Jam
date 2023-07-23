@@ -1,39 +1,34 @@
-import { Canvas, useThree } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import './App.css'
 import MainScene from './main_scene/MainScene';
-import { useState } from 'react';
 import MainUI from './main_scene/MainUI';
-import { Perf } from 'r3f-perf';
+import useScene from './stores/useScene';
 
 
 function App() {
-	let [scene, setScene] = useState("main");
+	let scene = useScene((state) => state.scene);
 
-	const current_scene = (scene) => {
+	const currentScene = (scene) => {
 		switch(scene) {
 		default:
 			return <MainScene/>;
 		}
 	}
 
-	const current_ui = (scene) => {
+	const currentUI = (scene) => {
 		switch(scene) {
 		default:
-			return <MainUI director={director}/>;
+			return <MainUI />;
 		}
-	}
-
-	const director = (sceneName) => {
-		setScene(sceneName);
 	}
 
 	return (
 		<>
 			<Canvas orthographic camera={{position:[0, 7.15, 5.15], zoom:42 }}>
 				<color attach="background" args={["#CDDEFF"]} />
-				{ current_scene(scene) }
+				{ currentScene(scene) }
 			</Canvas>
-			{ current_ui(scene) }
+			{ currentUI(scene) }
 		</>
 	)
 }
