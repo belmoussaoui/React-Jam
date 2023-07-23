@@ -14,7 +14,7 @@ export default function Route({x, y, d, id}) {
 						position-y={0.025}
 					>
 						<boxGeometry />
-						<meshStandardMaterial color="green" />
+						<meshStandardMaterial color="red" />
 					</mesh>
 					<mesh
 						position-x={0}
@@ -23,7 +23,7 @@ export default function Route({x, y, d, id}) {
 						position-y={0.025}
 					>
 						<boxGeometry />
-						<meshStandardMaterial color="green" />
+						<meshStandardMaterial color="red" />
 					</mesh>
 				</mesh>
 		case 3:
@@ -36,7 +36,7 @@ export default function Route({x, y, d, id}) {
 					position-y={0.025}
 				>
 					<boxGeometry />
-					<meshStandardMaterial color="green" />
+					<meshStandardMaterial color="red" />
 				</mesh>
 				<mesh
 					position-x={0}
@@ -45,7 +45,7 @@ export default function Route({x, y, d, id}) {
 					position-y={0.025}
 				>
 					<boxGeometry />
-					<meshStandardMaterial color="green" />
+					<meshStandardMaterial color="red" />
 				</mesh>
 			</mesh>
 		default:

@@ -20,7 +20,7 @@ function getDataTile(dataId, x, y, width, height) {
 		>
 			{/* <boxGeometry />
 			<meshStandardMaterial color="green" /> */}
-			<mesh
+			{/* <mesh
 				position-x={x - width / 2}
 				position-z={y - height / 2}
 				position-y={0.75}
@@ -28,7 +28,7 @@ function getDataTile(dataId, x, y, width, height) {
 			>
 				<boxGeometry />
 				<meshStandardMaterial color="red" />
-			</mesh>
+			</mesh> */}
 		</mesh>
 	</>
 }

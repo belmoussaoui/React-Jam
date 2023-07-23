@@ -3,9 +3,20 @@ import { useRef } from "react";
 import $dataMap from "../../assets/Map01";
 import useLoco from "../../stores/useLoco";
 import useRoute from "../../stores/useRoute";
+import { useGLTF } from "@react-three/drei";
 
 function is_moving(loco) {
 	return loco.x != loco.nextX || loco.y != loco.nextY;
+}
+
+function canMove(loco) {
+	for (const route of loco.routes) {
+		if (route.x == loco.nextX && route.y == loco.nextY)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 function command01(loco, route) {
@@ -66,7 +77,7 @@ function update_move(loco, delta) {
 }
 
 function update(loco, delta) {
-	if (is_moving(loco))
+	if (is_moving(loco) && canMove(loco))
 		update_move(loco, delta)
 	else {
 		getNextDestination(loco);
@@ -77,6 +88,7 @@ export default function Loco() {
 	let locoRef = useRef()
 	const isPlay = useLoco((state) => state.isPlay);
 	let routes = useRoute((state) => state.routes);
+	const model = useGLTF('./Loco.glb')
 
 	
 	let startX = $dataMap.start % $dataMap.width;
@@ -97,16 +109,14 @@ export default function Loco() {
 	})
 
 	return <>
-		 <mesh
-		 		ref={locoRef}
-				position-x={startX + 0.5 - $dataMap.width / 2}
-				position-z={startY + 0.5 - $dataMap.height / 2}
-				scale={ [ 0.8, 0.4, 0.4 ] }
-				position-y={0.2}
-				rotation-y={d * Math.PI / 2}
-			>
-			<boxGeometry />
-			<meshStandardMaterial color="blue" />
-		</mesh>
+		<primitive
+			object={ model.scene }
+			scale={ [0.3, 0.275, 0.3] }
+			ref={locoRef}
+			position-x={startX + 0.5 - $dataMap.width / 2}
+			position-z={startY + 0.5 - $dataMap.height / 2}
+			position-y={0.03}
+			rotation-y={d * Math.PI / 2}
+		/>
 	</>
 }
