@@ -1,11 +1,11 @@
 import { create } from "zustand";
 
 export default create((set) => {
-    return {
-        isPlaying: false,
-		play: () => {
+	return {
+        isPlay: false,
+        play: () => {
             set((state) => ({
-                isPlaying: true
+                isPlay: true
             }));
         }
     };

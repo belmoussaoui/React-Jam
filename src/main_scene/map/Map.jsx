@@ -13,7 +13,7 @@ export default function Map() {
 	
 	return <>
 		<Grid position={[0, 0.01, 0]} args={[8, 14]} cellThickness={0}></Grid>
-		{/* <Loco></Loco> */}
+		<Loco></Loco>
 		{ gameMap.map((value, index) => {
 			return <Tile key={index} tileId={index} dataId={value}></Tile>
 		})}

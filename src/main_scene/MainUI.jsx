@@ -1,8 +1,8 @@
-import useLoco from "../stores/useGame"
 import usePlayer from "../stores/usePlayer";
 import useRoute from "../stores/useRoute"
 import "./MainUI.css"
 import $dataMap from "../assets/Map01";
+import useLoco from "../stores/useLoco";
 
 function isValidRoute(x, y, routes) {
 	if (x < 0 || x >= $dataMap.width) return false;
