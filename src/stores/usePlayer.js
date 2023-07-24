@@ -4,7 +4,7 @@ import $dataMap from "../assets/Map01";
 
 export default create((set) => {
     return {
-        x: 4,
+        x: 3,
 		y: 7,
 		direction: 3,
         setDirection: (direction) => {

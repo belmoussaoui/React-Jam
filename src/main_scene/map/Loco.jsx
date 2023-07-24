@@ -88,7 +88,7 @@ export default function Loco() {
 	let locoRef = useRef()
 	const isPlay = useLoco((state) => state.isPlay);
 	let routes = useRoute((state) => state.routes);
-	const model = useGLTF('./Loco.glb')
+	const model = useGLTF('./Loco.glb');
 
 	
 	let startX = $dataMap.start % $dataMap.width;
@@ -111,11 +111,11 @@ export default function Loco() {
 	return <>
 		<primitive
 			object={ model.scene }
-			scale={ [0.3, 0.275, 0.3] }
+			scale={ [0.18, 0.18, 0.18] }
 			ref={locoRef}
 			position-x={startX + 0.5 - $dataMap.width / 2}
 			position-z={startY + 0.5 - $dataMap.height / 2}
-			position-y={0.03}
+			position-y={0.07}
 			rotation-y={d * Math.PI / 2}
 		/>
 	</>
