@@ -2,7 +2,7 @@ import { useGLTF } from "@react-three/drei";
 import $dataMap from "../../assets/Map01";
 
 export default function({x, y, d}) {
-	const { nodes, materials } = useGLTF("/Route02.glb");
+	const { nodes, materials } = useGLTF("./Route02.glb");
 	return (
 		<group  position-x={x + .5 - $dataMap.width / 2}
 		position-z={y + .5 - $dataMap.height / 2} rotation-y={d * Math.PI / 2}  dispose={null} scale={ [ 0.5, 0.5, 0.5 ] } >
@@ -58,4 +58,4 @@ export default function({x, y, d}) {
 }
 
 
-useGLTF.preload("/Route02.glb");
+useGLTF.preload("./Route02.glb");

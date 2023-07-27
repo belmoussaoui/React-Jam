@@ -2,11 +2,11 @@
   "name": "game-project",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://belmoussaoui.github.io/react-jam",
+  "homepage": "https://belmoussaoui.github.io/React-Jam",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --base=./",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
