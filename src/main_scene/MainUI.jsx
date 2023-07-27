@@ -16,6 +16,7 @@ function isValidRoute(x, y, routes) {
 
 export default function MainUI() {
 	const play = useLoco((state) => state.play);
+	const isPlay = useLoco((state) => state.isPlay);
 	const addRoute = useRoute((state) => state.addRoute);
 	const removeRoute = useRoute((state) => state.removeRoute);
 	const routes = useRoute((state) => state.routes);
@@ -69,7 +70,7 @@ export default function MainUI() {
 			></button>
 		</div>
 		<div className="action-container">
-			<button onClick={() => play()}>Play</button>
+			<button onClick={() => play()}><img src="./Play.png"></img></button>
 		</div>
 	</div>
 	</>

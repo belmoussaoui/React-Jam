@@ -1,5 +1,5 @@
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import $dataMap from "../../assets/Map01";
 import useLoco from "../../stores/useLoco";
 import useRoute from "../../stores/useRoute";
@@ -11,7 +11,7 @@ function is_moving(loco) {
 
 function canMove(loco) {
 	for (const route of loco.routes) {
-		if (route.x == loco.nextX && route.y == loco.nextY)
+		if (route.x == loco.nextX && route.y == loco.nextY && loco.direction == route.direction)
 		{
 			return true;
 		}
@@ -79,10 +79,14 @@ function update_move(loco, delta) {
 function update(loco, delta) {
 	if (is_moving(loco) && canMove(loco))
 		update_move(loco, delta)
-	else {
+	else if (canMove(loco)) {
 		getNextDestination(loco);
+	} else {
+		
 	}
 }
+
+let loco = {}
 
 export default function Loco() {
 	let locoRef = useRef()
@@ -90,23 +94,237 @@ export default function Loco() {
 	let routes = useRoute((state) => state.routes);
 	const model = useGLTF('./Loco.glb');
 
-	
-	let startX = $dataMap.start % $dataMap.width;
-	let startY = Math.floor($dataMap.start / $dataMap.width);
-	let loco = {}
 	loco.loco = locoRef.current,
-	loco.x = startX;
-	loco.y = startY;
-	loco.nextX = startX;
-	loco.nextY = startY;
+
 	loco.direction = 3;
 	loco.routes = routes;
 
+	useEffect(() => {
+		let startX = $dataMap.start % $dataMap.width;
+		let startY = Math.floor($dataMap.start / $dataMap.width);
+		loco.x = startX;
+		loco.y = startY;
+		loco.nextX = startX;
+		loco.nextY = startY;
+		
+	}, []);
+
 	let d = 3;
 	useFrame((state, delta) => {
+		console.log(loco);
 		if (isPlay)
 			update(loco, delta);
 	})
+	const { nodes, materials } = useGLTF("/Loco.glb");
+	return (
+	  <group
+	  	ref={locoRef}
+		position-x={loco.startX + 0.5 - $dataMap.width / 2}
+		position-z={loco.startY + 0.5 - $dataMap.height / 2}
+		position-y={0.00}
+		rotation-y={d * Math.PI / 2}
+		dispose={null}
+		scale={0.5}>
+		   <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Cube002.geometry}
+        material={materials["Material.002"]}
+        position={[0.018, 0.244, 0.001]}
+        scale={[0.641, 0.854, 0.58]}
+      />
+      <group
+        position={[0.17, 0.394, 0.001]}
+        rotation={[0, 0, -Math.PI / 2]}
+        scale={0.641}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Cylinder_1.geometry}
+          material={materials["Material.002"]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Cylinder_2.geometry}
+          material={materials["Material.004"]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Cylinder_3.geometry}
+          material={materials["Material.007"]}
+        />
+      </group>
+      <group position={[-0.134, 0.415, 0.001]} scale={0.678}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Cube003.geometry}
+          material={materials["Material.003"]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Cube003_1.geometry}
+          material={materials["Material.003"]}
+        />
+      </group>
+      <group
+        position={[-0.037, 0.254, -0.119]}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.091}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Circle_1.geometry}
+          material={materials["Material.002"]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Circle_2.geometry}
+          material={materials["Material.008"]}
+        />
+      </group>
+      <group
+        position={[-0.23, 0.254, -0.119]}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.091}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Circle001_1.geometry}
+          material={materials["Material.002"]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Circle001_2.geometry}
+          material={materials["Material.008"]}
+        />
+      </group>
+      <group
+        position={[0.276, 0.226, -0.119]}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.06}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Circle002_1.geometry}
+          material={materials["Material.002"]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Circle002_2.geometry}
+          material={materials["Material.008"]}
+        />
+      </group>
+      <group
+        position={[0.144, 0.226, -0.119]}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.06}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Circle003_1.geometry}
+          material={materials["Material.002"]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Circle003_2.geometry}
+          material={materials["Material.008"]}
+        />
+      </group>
+      <group
+        position={[-0.037, 0.26, 0.126]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={0.091}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Circle004_1.geometry}
+          material={materials["Material.002"]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Circle004_2.geometry}
+          material={materials["Material.008"]}
+        />
+      </group>
+      <group
+        position={[-0.23, 0.26, 0.126]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={0.091}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Circle005_1.geometry}
+          material={materials["Material.002"]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Circle005_2.geometry}
+          material={materials["Material.008"]}
+        />
+      </group>
+      <group
+        position={[0.276, 0.237, 0.126]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={0.06}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Circle006_1.geometry}
+          material={materials["Material.002"]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Circle006_2.geometry}
+          material={materials["Material.008"]}
+        />
+      </group>
+      <group
+        position={[0.144, 0.237, 0.126]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={0.06}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Circle007_1.geometry}
+          material={materials["Material.002"]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Circle007_2.geometry}
+          material={materials["Material.008"]}
+        />
+      </group>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Cylinder001.geometry}
+        material={materials["Material.002"]}
+        position={[0.246, 0.559, 0.001]}
+        scale={[0.034, 0.1, 0.034]}
+      />
+	  </group>
+	);
 
 	return <>
 		<primitive
