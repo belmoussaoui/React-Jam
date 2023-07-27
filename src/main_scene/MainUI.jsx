@@ -50,17 +50,23 @@ export default function MainUI() {
 	return <>
 	<div className="ui-container">
 		<div className="rail-container">
-			<button onClick={() => createRoute(1)}>1</button>
-			<button onClick={() => createRoute(2)}>2</button>
-			<button onClick={() => createRoute(3)}>3</button>
-			<button onClick={() => {
+			<button onClick={() => createRoute(1)}>
+				<img src="./Route01.png"></img>
+			</button>
+			<button onClick={() => createRoute(2)}>
+				<img src="./Route02.png"></img>
+			</button>
+			<button onClick={() => createRoute(3)}>
+				<img src="./Route03.png"></img>
+			</button>
+			<button className="remove" onClick={() => {
 				if (routes.length <= 0) return;
 				removeRoute();
 				setX(routes[routes.length - 1].x);
 				setY(routes[routes.length - 1].y)
 				setDirection(routes[routes.length - 1].direction);
 			}}
-			>x</button>
+			></button>
 		</div>
 		<div className="action-container">
 			<button onClick={() => play()}>Play</button>

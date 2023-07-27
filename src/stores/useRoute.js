@@ -3,7 +3,7 @@ import $dataMap from "../assets/Map01";
 
 export default create((set) => {
     return {
-        routes: [],
+        routes: [{id: 1, direction: 3, x: 3, y: 7}],
         addRoute: (route) => {
             set((state) => ({
                 routes: [...state.routes, route],

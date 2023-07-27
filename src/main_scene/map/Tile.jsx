@@ -58,17 +58,7 @@ export default function Tile({tileId, dataId}) {
 		  </group>
 		);
 	}
-	// const model = useGLTF('./Castle.glb')
-	// return <primitive
-	// 	object={ model.scene }
-	// 	receiveShadow
-	// 	castShadow
-	// 	position-x={x + .5 - width / 2}
-	// 	position-z={y + .5 - height / 2}
-	// 	position-y={-0.1}
-	// 	scale={[0.5, 0.5, 0.5]}
-	// 	rotation-y={3 * Math.PI / 2}
-	// />
+
 	const { nodes, materials } = useGLTF("/Castle.glb");
 	return (
 	  <group

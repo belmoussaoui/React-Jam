@@ -5,14 +5,22 @@
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
-	width: 200px;
+	width: 245px;
 	justify-content: space-evenly;
 }
 
 
 .rail-container button {
-	width: 40px;
-	height: 40px;
+	width: 50px;
+	height: 50px;
+	background: transparent;
+	border: none;
+	background: white;
+	display: flex;
+	margin: auto;
+	padding: 0;
+	text-align: center;
+	border-radius: 8px;
 }
 
 .action-container {
@@ -29,4 +37,34 @@
 .action-container button {
 	width: 40px;
 	height: 40px;
+}
+
+button img {
+	width: 50px;
+    height: 50px;
+    padding: 0px 0px;
+	position: relative;
+}
+
+.remove:before {
+	left: 213px;
+	top: 4px;
+	position: absolute;
+    content: " ";
+    height: 40px;
+    width: 4px;
+    background-color: #dc3545;
+	transform: rotate(45deg);
+}
+
+.remove:after {
+	left: 213px;
+	top: 4px;
+	position: absolute;
+	margin-left: 0px;
+    content: " ";
+    height: 40px;
+    width: 4px;
+    background-color: #dc3545;
+	transform: rotate(-45deg);
 }

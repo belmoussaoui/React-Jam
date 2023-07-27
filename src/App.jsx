@@ -24,7 +24,7 @@ function App() {
 
 	return (
 		<>
-			<Canvas  shadows orthographic camera={{position:[0, 7.15, 5.15], zoom:42 }}>
+			<Canvas  shadows orthographic camera={{position:[0, 5.15, 5.15], zoom:47 }}>
 				<color attach="background" args={["#CDDEFF"]} />
 				{ currentScene(scene) }
 			</Canvas>
