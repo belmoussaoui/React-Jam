@@ -115,7 +115,7 @@ export default function Loco() {
 		if (isPlay)
 			update(loco, delta);
 	})
-	const { nodes, materials } = useGLTF("/Loco.glb");
+	const { nodes, materials } = useGLTF("./Loco.glb");
 	return (
 	  <group
 	  	ref={locoRef}
@@ -325,16 +325,6 @@ export default function Loco() {
       />
 	  </group>
 	);
-
-	return <>
-		<primitive
-			object={ model.scene }
-			scale={ [0.18, 0.18, 0.18] }
-			ref={locoRef}
-			position-x={startX + 0.5 - $dataMap.width / 2}
-			position-z={startY + 0.5 - $dataMap.height / 2}
-			position-y={0.07}
-			rotation-y={d * Math.PI / 2}
-		/>
-	</>
 }
+
+useGLTF.preload("./Loco.glb");

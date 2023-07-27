@@ -11,37 +11,14 @@ function tileIdToMapY(tileId) {
 	return Math.floor(tileId / width);
 }
 
-function getDataTile(dataId, x, y, width, height) {
-	return <>
-		 <mesh
-			position-x={x + .5 - width / 2}
-			position-z={y + .5 - height / 2}
-			position-y={-0.5}
-			scale={[1, 1, 1]}
-		>
-			{/* <boxGeometry />
-			<meshStandardMaterial color="green" /> */}
-			{/* <mesh
-				position-x={x - width / 2}
-				position-z={y - height / 2}
-				position-y={0.75}
-				scale={[0.5, 0.5, 0.5]}
-			>
-				<boxGeometry />
-				<meshStandardMaterial color="red" />
-			</mesh> */}
-		</mesh>
-	</>
-}
 
 export default function Tile({tileId, dataId}) {
 	let width = useMap((state) => state.width);
 	let height = useMap((state) => state.height);
 	let x = tileIdToMapX(tileId);
 	let y = tileIdToMapY(tileId);
-	const tile = useGLTF('./Tile.glb')
 	if (dataId === 0) {
-		const { nodes, materials } = useGLTF("/Tile.glb");
+		const { nodes, materials } = useGLTF("./Tile.glb");
 		return (
 		  <group
 		  position-x={x + .5 - width / 2} 
@@ -59,7 +36,7 @@ export default function Tile({tileId, dataId}) {
 		);
 	}
 
-	const { nodes, materials } = useGLTF("/Castle.glb");
+	const { nodes, materials } = useGLTF("./Castle.glb");
 	return (
 	  <group
 	  position-x={x + .5 - width / 2}
@@ -114,3 +91,6 @@ export default function Tile({tileId, dataId}) {
 	  </group>
 	);
 }
+
+useGLTF.preload("./Tile.glb");
+useGLTF.preload("./Castle.glb");
