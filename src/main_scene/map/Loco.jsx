@@ -76,44 +76,62 @@ function update_move(loco, delta) {
 	loco.loco.rotation.y = loco.direction * Math.PI / 2
 }
 
+function terminate(loco) {
+  let startX = $dataMap.start % $dataMap.width;
+  let startY = Math.floor($dataMap.start / $dataMap.width);
+  loco.x = startX;
+  loco.y = startY;
+  loco.direction = 3
+  loco.nextX = startX;
+  loco.nextY = startY;
+  loco.play();
+}
+
 function update(loco, delta) {
 	if (is_moving(loco) && canMove(loco))
 		update_move(loco, delta)
 	else if (canMove(loco)) {
 		getNextDestination(loco);
 	} else {
-		
+    setTimeout(() => {
+      terminate(loco)
+    }, 1000)
 	}
 }
 
 let loco = {}
+loco.direction = 3;
+let startX = $dataMap.start % $dataMap.width;
+let startY = Math.floor($dataMap.start / $dataMap.width);
+loco.x = startX;
+loco.y = startY;
+loco.nextX = startX;
+loco.nextY = startY;
 
 export default function Loco() {
 	let locoRef = useRef()
 	const isPlay = useLoco((state) => state.isPlay);
+	const play = useLoco((state) => state.play);
+  loco.play = play;
 	let routes = useRoute((state) => state.routes);
-	const model = useGLTF('./Loco.glb');
+	
 
-	loco.loco = locoRef.current,
 
-	loco.direction = 3;
 	loco.routes = routes;
 
+
 	useEffect(() => {
-		let startX = $dataMap.start % $dataMap.width;
-		let startY = Math.floor($dataMap.start / $dataMap.width);
-		loco.x = startX;
-		loco.y = startY;
-		loco.nextX = startX;
-		loco.nextY = startY;
-		
+		loco.loco = locoRef.current;
 	}, []);
 
 	let d = 3;
 	useFrame((state, delta) => {
-		console.log(loco);
-		if (isPlay)
+		if (isPlay && loco.loco)
 			update(loco, delta);
+      loco.loco.position.z = loco.y + 0.5 - $dataMap.height / 2;
+      loco.loco.position.x = loco.x + 0.5 - $dataMap.width / 2;
+      loco.loco.rotation.y = loco.direction * Math.PI / 2
+
 	})
 	const { nodes, materials } = useGLTF("./Loco.glb");
 	return (

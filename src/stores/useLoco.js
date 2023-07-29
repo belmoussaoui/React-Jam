@@ -5,8 +5,8 @@ export default create((set) => {
         isPlay: false,
         play: () => {
             set((state) => ({
-                isPlay: true
+                isPlay: !state.isPlay
             }));
-        }
+        },
     };
 });

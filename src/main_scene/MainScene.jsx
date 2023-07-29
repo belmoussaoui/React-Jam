@@ -4,7 +4,7 @@ import Light from './Light';
 
 export default function MainScene() {
 	return <>
-		{/* <OrbitControls /> */}
+		<OrbitControls />
 		<Light></Light>
 		<Map></Map>
 	</>

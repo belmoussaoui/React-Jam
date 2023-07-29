@@ -8,7 +8,6 @@ export default function BootScene() {
 	// });
 	let goToMain = () => {
 		setScene("main");
-		console.log("ok");
 	}
 	const { progress } = useProgress();
 	const bar = document.querySelector("#bar");

@@ -61,7 +61,7 @@ export default function MainUI() {
 				<img src="./Route03.png"></img>
 			</button>
 			<button className="remove" onClick={() => {
-				if (routes.length <= 0) return;
+				if (routes.length <= 1) return;
 				removeRoute();
 				setX(routes[routes.length - 1].x);
 				setY(routes[routes.length - 1].y)
