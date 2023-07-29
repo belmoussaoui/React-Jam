@@ -2,6 +2,8 @@ import { Canvas } from '@react-three/fiber'
 import './App.css'
 import MainScene from './main_scene/MainScene';
 import MainUI from './main_scene/MainUI';
+import BootScene from './boot_scene/BootScene';
+import BootUI from "./boot_scene/BootUI"
 import useScene from './stores/useScene';
 
 
@@ -10,6 +12,8 @@ function App() {
 
 	const currentScene = (scene) => {
 		switch(scene) {
+		case "boot":
+			return <BootScene/>
 		default:
 			return <MainScene/>;
 		}
@@ -17,6 +21,8 @@ function App() {
 
 	const currentUI = (scene) => {
 		switch(scene) {
+		case "boot":
+			return <BootUI/>
 		default:
 			return <MainUI />;
 		}

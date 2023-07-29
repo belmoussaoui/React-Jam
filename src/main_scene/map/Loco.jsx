@@ -93,9 +93,13 @@ function update(loco, delta) {
 	else if (canMove(loco)) {
 		getNextDestination(loco);
 	} else {
-    setTimeout(() => {
-      terminate(loco)
-    }, 1000)
+    if (loco.end) {
+      setTimeout(() => {
+        terminate(loco)
+        loco.end = true
+      }, 1000)
+      loco.end = false;
+    }
 	}
 }
 
@@ -107,6 +111,7 @@ loco.x = startX;
 loco.y = startY;
 loco.nextX = startX;
 loco.nextY = startY;
+loco.end = true;
 
 export default function Loco() {
 	let locoRef = useRef()

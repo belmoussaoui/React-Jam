@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 export default create((set) => {
     return {
-        scene: "main",
+        scene: "boot",
         setScene: (scene) => set((state) => ({scene: scene})),
     };
 });

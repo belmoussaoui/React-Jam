@@ -1,5 +1,8 @@
 import { Html, useProgress } from "@react-three/drei";
 import useScene from "../stores/useScene";
+import { useFrame } from "@react-three/fiber";
+
+let value = 0;
 
 export default function BootScene() {
 	const setScene = useScene((state) => state.setScene);
@@ -9,13 +12,28 @@ export default function BootScene() {
 	let goToMain = () => {
 		setScene("main");
 	}
+	let start = document.querySelector("#start");
+	start.onclick = () => {
+		setTimeout(() => {
+				goToMain();
+			}, 100);
+	}
+	let loco = document.querySelector("#loco");
+	useFrame(() => {
+		if (value < progress)
+			value += 0.5;
+		loco.style.left = 100 + "%";
+		bar.style.width = value + "%";
+		if (value === 100) {
+			
+			start.style.display = "flex";
+			
+		}
+		
+	})
 	const { progress } = useProgress();
 	const bar = document.querySelector("#bar");
-	bar.style.width = progress + "%";
-	const value = document.querySelector(".value");
-	value.textContent = progress;
-	if (progress === 100) {
-		goToMain();
-	}
+	
+	
 	return <></>
 }

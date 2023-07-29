@@ -27,9 +27,25 @@ export default function MainUI() {
 	let direction = usePlayer((state) => state.direction);
 	const setDirection = usePlayer((state) => state.setDirection);
 
+	let onPlay = () => {
+		play();
+		if (!isPlay) {
+			let audio = new Audio("./ChooChoo.wav");
+			audio.volume = 0.3;
+			audio.play();
+		} else {
+			let audio = new Audio("./Bong01.ogg");
+			audio.volume = 0.6;
+			audio.play();
+		}
+	}
+
 	let createRoute = (routeId) => {
 		if (!isValidRoute(x, y, routes)) return false;
 		addRoute({id: routeId, direction: direction, x: x, y: y});
+		let audio = new Audio("./Confirm04.ogg");
+		audio.volume = 0.3;
+		audio.play();
 		if (routeId == 2) {
 			direction = direction - 1 >= 0 ? direction - 1 : 3
 			setDirection(direction);
@@ -47,7 +63,6 @@ export default function MainUI() {
 		if (direction === 3)
 			setY(y + 1);
 	}
-
 	return <>
 	<div className="ui-container">
 		<div className="rail-container">
@@ -62,6 +77,9 @@ export default function MainUI() {
 			</button>
 			<button className="remove" onClick={() => {
 				if (routes.length <= 1) return;
+				let audio = new Audio("./Drop01.ogg");
+				audio.volume = 0.3;
+				audio.play();
 				removeRoute();
 				setX(routes[routes.length - 1].x);
 				setY(routes[routes.length - 1].y)
@@ -70,7 +88,9 @@ export default function MainUI() {
 			></button>
 		</div>
 		<div className="action-container">
-			<button onClick={() => play()}><img src="./Play.png"></img></button>
+			<button onClick={onPlay}>
+				{ isPlay ? <img src="./Pause.png"></img> : <img src="./Play.png"></img>}
+			</button>
 		</div>
 	</div>
 	</>
