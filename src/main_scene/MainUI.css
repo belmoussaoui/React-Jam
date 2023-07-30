@@ -76,3 +76,42 @@ button img {
     background-color: #dc3545;
 	transform: rotate(-45deg);
 }
+
+
+.message {
+	display: flex;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background: white;
+	width: 300px;
+	padding: 20px;
+	border-radius: 10px;
+	flex-direction: column;
+    align-items: center;
+	opacity: 0;
+	transition: all 0.5s;
+}
+
+.message p {
+	font-size: 16px;
+	margin: 0;
+}
+
+.restart {
+	position: absolute;
+    font-size: 16px;
+    text-align: center;
+    width: 70px;
+    height: 40px;
+	left: 50%;
+	top: 50%;
+    border: none;
+    background: white;
+    margin: auto;
+    padding: 0;
+    border-radius: 8px;
+	transform: translate(-50%, calc(-50% + 80px));
+	z-index: 100;
+}

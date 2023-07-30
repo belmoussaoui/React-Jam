@@ -17,6 +17,7 @@ function isValidRoute(x, y, routes) {
 export default function MainUI() {
 	const play = useLoco((state) => state.play);
 	const isPlay = useLoco((state) => state.isPlay);
+	const isEnd = useLoco((state) => state.isEnd);
 	const addRoute = useRoute((state) => state.addRoute);
 	const removeRoute = useRoute((state) => state.removeRoute);
 	const routes = useRoute((state) => state.routes);
@@ -27,7 +28,10 @@ export default function MainUI() {
 	let direction = usePlayer((state) => state.direction);
 	const setDirection = usePlayer((state) => state.setDirection);
 
+
 	let onPlay = () => {
+		console.log(isEnd);
+		if (isEnd) return;
 		play();
 		if (!isPlay) {
 			let audio = new Audio("./ChooChoo.wav");
@@ -41,6 +45,7 @@ export default function MainUI() {
 	}
 
 	let createRoute = (routeId) => {
+		if (isEnd) return;
 		if (!isValidRoute(x, y, routes)) return false;
 		addRoute({id: routeId, direction: direction, x: x, y: y});
 		let audio = new Audio("./Confirm04.ogg");
@@ -76,6 +81,7 @@ export default function MainUI() {
 				<img src="./Route03.png"></img>
 			</button>
 			<button className="remove" onClick={() => {
+				if (isEnd) return;
 				if (routes.length <= 1) return;
 				let audio = new Audio("./Drop01.ogg");
 				audio.volume = 0.3;
@@ -91,6 +97,9 @@ export default function MainUI() {
 			<button onClick={onPlay}>
 				{ isPlay ? <img src="./Pause.png"></img> : <img src="./Play.png"></img>}
 			</button>
+		</div>
+		<div className="message">
+			<p>The train 🚂 has arrived at its destination!</p>
 		</div>
 	</div>
 	</>

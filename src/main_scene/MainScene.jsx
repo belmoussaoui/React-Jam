@@ -11,7 +11,7 @@ export default function MainScene() {
 		audio.play();
 	}, [])
 	return <>
-		<OrbitControls />
+		{/* <OrbitControls /> */}
 		<Light></Light>
 		<Map></Map>
 	</>

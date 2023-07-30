@@ -79,12 +79,15 @@ function update_move(loco, delta) {
 function terminate(loco) {
   let startX = $dataMap.start % $dataMap.width;
   let startY = Math.floor($dataMap.start / $dataMap.width);
+  let msg = document.querySelector(".message");
+  msg.style.opacity = 0;
   loco.x = startX;
   loco.y = startY;
   loco.direction = 3
   loco.nextX = startX;
   loco.nextY = startY;
   loco.play();
+  loco.end(false);
 }
 
 function update(loco, delta) {
@@ -93,12 +96,18 @@ function update(loco, delta) {
 	else if (canMove(loco)) {
 		getNextDestination(loco);
 	} else {
-    if (loco.end) {
+    if (loco.terminate) {
+      let msg = document.querySelector(".message");
+      msg.style.opacity = 1;
+      let audio = new Audio("./Terminate.wav");
+	    audio.volume = 0.3;
+      audio.play();
+      loco.end(true);
       setTimeout(() => {
         terminate(loco)
-        loco.end = true
-      }, 1000)
-      loco.end = false;
+        loco.terminate = true
+      }, 3000)
+      loco.terminate = false;
     }
 	}
 }
@@ -111,13 +120,14 @@ loco.x = startX;
 loco.y = startY;
 loco.nextX = startX;
 loco.nextY = startY;
-loco.end = true;
+loco.terminate = true;
 
 export default function Loco() {
 	let locoRef = useRef()
 	const isPlay = useLoco((state) => state.isPlay);
 	const play = useLoco((state) => state.play);
   loco.play = play;
+  loco.end = useLoco((state) => state.end);
 	let routes = useRoute((state) => state.routes);
 	
 
